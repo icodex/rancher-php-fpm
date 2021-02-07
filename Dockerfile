@@ -1,4 +1,4 @@
-FROM php:7.4.15-fpm
+FROM php:7.2.34-fpm
 
 LABEL maintainer="Shing Lau <icodex@msn.com>"
 
@@ -51,14 +51,14 @@ RUN apt-get update && apt-get upgrade -y \
     && curl -fsSL 'http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz' -o ioncube_loaders.tar.gz \
     && mkdir -p ioncube_loaders \
     && tar -xf ioncube_loaders.tar.gz -C ioncube_loaders --strip-components=1 \
-    && cp ioncube_loaders/ioncube_loader_lin_7.4.so /usr/local/lib/php/extensions/no-debug-non-zts-20190902/ \
-    && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/ioncube_loader_lin_7.4.so" > /usr/local/etc/php/conf.d/docker-php-ext-ioncube_loader_lin_7.4.ini \
+    && cp ioncube_loaders/ioncube_loader_lin_7.2.so /usr/local/lib/php/extensions/no-debug-non-zts-20170718/ \
+    && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/ioncube_loader_lin_7.2.so" > /usr/local/etc/php/conf.d/docker-php-ext-ioncube_loader_lin_7.2.ini \
     && rm -Rf ioncube_loaders.tar.gz ioncube_loaders \
     && curl -fsSL 'https://www.sourceguardian.com/loaders/download/loaders.linux-x86_64.tar.gz' -o loaders.tar.gz \
     && mkdir -p loaders \
     && tar -xf loaders.tar.gz -C loaders --strip-components=1 \
-    && cp loaders/ixed.7.4.lin /usr/local/lib/php/extensions/no-debug-non-zts-20190902/ \
-    && echo "extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/ixed.7.4.lin" > /usr/local/etc/php/conf.d/docker-php-ext-ixed_loader_7.4.ini \
+    && cp loaders/ixed.7.2.lin /usr/local/lib/php/extensions/no-debug-non-zts-20170718/ \
+    && echo "extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/ixed.7.2.lin" > /usr/local/etc/php/conf.d/docker-php-ext-ixed_loader_7.2.ini \
     && rm -Rf loaders.tar.gz loaders \
     && git clone https://github.com/swoole/swoole-src.git /tmp/swoole \
     && cd /tmp/swoole \
