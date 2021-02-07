@@ -55,11 +55,10 @@ RUN apt-get update && apt-get upgrade -y \
     && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/ioncube_loader_lin_7.2.so" > /usr/local/etc/php/conf.d/docker-php-ext-ioncube_loader_lin_7.2.ini \
     && rm -Rf ioncube_loaders.tar.gz ioncube_loaders \
     && curl -fsSL 'https://www.sourceguardian.com/loaders/download/loaders.linux-x86_64.tar.gz' -o loaders.tar.gz \
-    && mkdir -p loaders \
-    && tar -xf loaders.tar.gz -C loaders --strip-components=1 \
-    && cp loaders/ixed.7.2.lin /usr/local/lib/php/extensions/no-debug-non-zts-20170718/ \
+    && tar -xf loaders.tar.gz --strip-components=1 \
+    && cp ixed.7.2.lin /usr/local/lib/php/extensions/no-debug-non-zts-20170718/ \
     && echo "extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/ixed.7.2.lin" > /usr/local/etc/php/conf.d/docker-php-ext-ixed_loader_7.2.ini \
-    && rm -Rf loaders.tar.gz loaders \
+    && rm -Rf loaders.tar.gz ixed.* \
     && git clone https://github.com/swoole/swoole-src.git /tmp/swoole \
     && cd /tmp/swoole \
     && docker-php-ext-configure /tmp/swoole --enable-openssl --enable-sockets --enable-http2 --enable-swoole --enable-mysqlnd \
