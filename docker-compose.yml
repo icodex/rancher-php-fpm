@@ -1,0 +1,10 @@
+version: '3'
+services:
+  phpfpm:
+    container_name: phpfpm
+    image: icodex/rancher-php-fpm
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/var/www/html
+    command: php -S="0.0.0.0:3000" -t="/var/www/html"
