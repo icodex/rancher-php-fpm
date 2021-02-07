@@ -48,24 +48,14 @@ RUN apt-get update && apt-get upgrade -y \
     && pecl install mongodb && docker-php-ext-enable mongodb \
     && pecl install redis && docker-php-ext-enable redis \
     && yes '' | pecl install imagick && docker-php-ext-enable imagick \
-    && curl -fsSL 'http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz' -o ioncube_loaders.tar.gz \
-    && mkdir -p ioncube_loaders \
-    && tar -xf ioncube_loaders.tar.gz -C ioncube_loaders --strip-components=1 \
-    && cp ioncube_loaders/ioncube_loader_lin_7.2.so /usr/local/lib/php/extensions/no-debug-non-zts-20170718/ \
-    && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/ioncube_loader_lin_7.2.so" > /usr/local/etc/php/conf.d/docker-php-ext-ioncube_loader_lin_7.2.ini \
-    && rm -Rf ioncube_loaders.tar.gz ioncube_loaders \
-    && curl -fsSL 'https://www.sourceguardian.com/loaders/download/loaders.linux-x86_64.tar.gz' -o loaders.tar.gz \
-    && mkdir -p loaders \
-    && tar -xf loaders.tar.gz -C loaders --strip-components=1 \
-    && cp loaders/ixed.7.2.lin /usr/local/lib/php/extensions/no-debug-non-zts-20170718/ \
-    && echo "extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/ixed.7.2.lin" > /usr/local/etc/php/conf.d/docker-php-ext-ixed_loader_7.2.ini \
-    && rm -Rf loaders.tar.gz loaders \
     && git clone https://github.com/swoole/swoole-src.git /tmp/swoole \
     && cd /tmp/swoole \
     && docker-php-ext-configure /tmp/swoole --enable-openssl --enable-sockets --enable-http2 --enable-swoole --enable-mysqlnd \
     && docker-php-ext-install /tmp/swoole \
     && rm -r /tmp/swoole \
     && docker-php-ext-enable swoole \
+    && curl -fsSL 'https://business.swoole.com/static/loader1.9.0/swoole_loader72.so' -o /usr/local/lib/php/extensions/no-debug-non-zts-20170718/swoole_loader72.so \
+    && echo "extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/swoole_loader72.so" > /usr/local/etc/php/conf.d/docker-php-ext-swoole_loader72.ini \
     && docker-php-source delete \
     && apt-get remove -y g++ wget \
     && apt-get autoremove --purge -y && apt-get autoclean -y && apt-get clean -y \
