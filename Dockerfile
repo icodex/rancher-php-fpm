@@ -42,7 +42,7 @@ RUN apt-get update && apt-get upgrade -y \
     && docker-php-ext-install -j$(nproc) imap \
     && docker-php-ext-configure intl \
     && docker-php-ext-install -j$(nproc) intl \
-    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+    && docker-php-ext-configure ldap \
     && docker-php-ext-install ldap \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip \
@@ -60,7 +60,7 @@ RUN apt-get update && apt-get upgrade -y \
     && rm -Rf ioncube_loaders.tar.gz ioncube_loaders \
     && curl -fsSL 'https://www.sourceguardian.com/loaders/download/loaders.linux-x86_64.tar.gz' -o loaders.tar.gz \
     && mkdir -p loaders \
-    && tar -xf loaders.tar.gz -c loaders \
+    && tar -xf loaders.tar.gz -C loaders \
     && cp loaders/ixed.7.2.lin /usr/local/lib/php/extensions/no-debug-non-zts-20170718/ \
     && echo "extension=/usr/local/lib/php/extensions/no-debug-non-zts-20170718/ixed.7.2.lin" > /usr/local/etc/php/conf.d/docker-php-ext-ixed_loader_7.2.ini \
     && rm -Rf loaders.tar.gz loaders \
