@@ -1,1 +1,1 @@
-# rancher-php-fpm
+# php-fpm

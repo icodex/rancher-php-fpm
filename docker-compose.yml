@@ -2,7 +2,7 @@ version: '3'
 services:
   phpfpm:
     container_name: phpfpm
-    image: icodex/rancher-php-fpm
+    image: icodex/php-fpm
     ports:
       - 3000:3000
     volumes:
