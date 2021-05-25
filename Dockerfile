@@ -1,4 +1,4 @@
-FROM php:7.4.15-fpm
+FROM php:7.4.19-fpm
 
 LABEL maintainer="Shing Lau <icodex@msn.com>"
 
