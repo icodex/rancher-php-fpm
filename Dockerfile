@@ -30,6 +30,7 @@ RUN apt-get update && apt-get upgrade -y \
     libjemalloc-dev \
     memcached \
     wget \
+    ffmpeg \
     unzip \
     zlib1g-dev \
     && docker-php-ext-install -j$(nproc) bcmath bz2 calendar exif gettext mysqli opcache pdo_mysql pdo_pgsql pgsql soap sockets xmlrpc xsl \
